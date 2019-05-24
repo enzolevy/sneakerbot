@@ -1,4 +1,5 @@
 import pandas as pd
+import sys
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -6,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 
 import time
 
-from proxies import get_proxy_list
+
 
 from scrapper import scrap_size_official
 
@@ -22,7 +23,7 @@ infos = {
     #'paypal_mdp' : 'Avammar28!'
 }
 
-driver_path = '../chromedriver'
+driver_path = './chromedriver'
 
 scrap_url = 'https://www.sizeofficial.fr/femme/accessoires/'
 
@@ -30,4 +31,8 @@ def launch_bot(driver_path, scrap_url, infos):
     scrap_size_official(driver_path, scrap_url, infos)
     buy_shoe(driver_path, infos)
 
-launch_bot(scrap_url, infos)
+def main(args):
+    launch_bot(driver_path, scrap_url, infos)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

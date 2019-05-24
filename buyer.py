@@ -3,10 +3,11 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import fake_useragent
 
 import time
 
-def add_to_cart(driver):
+def add_to_cart(driver, infos):
     cookie_close_1 = driver.find_element_by_class_name('cookie-msg__close')
     cookie_close_1.click()
     time.sleep(2)
@@ -70,12 +71,11 @@ def pay_shoe(infos, driver):
 def buy_shoe(driver_path, infos):
 
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--proxy-server=http://{0}:{1}'.format(ip, port))
     chrome_options.add_argument('--user-agent={0}'.format(fake_useragent.UserAgent()))
 
     driver = webdriver.Chrome(driver_path)
 
     driver.get(infos['url'])
-    add_to_cart(driver)
+    add_to_cart(driver, infos)
     fill_checkout(infos, driver)
     pay_shoe(infos, driver)

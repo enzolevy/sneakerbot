@@ -3,7 +3,9 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-
+from itertools import cycle
+from proxies import get_proxy_list
+import fake_useragent
 import time
 
 def get_bs_obj(driver_path, url, ip, port):
@@ -60,13 +62,13 @@ def get_pages(driver_path, url):
         df_list.append(get_page(driver_path, url, ip, port))
     return df_list
 
-def get_product_url(name):
+def get_product_url(name, shoes_list):
     mask = shoes_list['title'].str.contains(name)
     shoe_url = shoes_list.loc[mask, ['link']].values[0][0]
     shoe_url_concatenated = 'https://www.sizeofficial.fr' + shoe_url
     return shoe_url_concatenated
 
-def scrap_size_official(driver_path, scrap_url, infos)
+def scrap_size_official(driver_path, scrap_url, infos):
     shoes_list = pd.concat(get_pages(driver_path, scrap_url))
-    infos.update({'url': get_product(infos['product_name'])})
+    infos.update({'url': get_product_url(infos['product_name'], shoes_list)})
     return infos
