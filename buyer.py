@@ -68,11 +68,16 @@ def pay_shoe(infos, driver):
     continue_btn_2 = driver.find_element_by_id('confirmButtonTop')
     continue_btn_2.click()
 
+
 def buy_shoe(driver_path, infos):
 
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--user-agent={0}'.format(fake_useragent.UserAgent()))
-
+    chrome_options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2,
+                                                     "disk-cache-size": 4096})
     driver = webdriver.Chrome(driver_path)
 
     driver.get(infos['url'])
