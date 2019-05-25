@@ -9,6 +9,12 @@ import fake_useragent
 def get_proxy_list(driver_path):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--user-agent={0}'.format(fake_useragent.UserAgent()))
+    chrome_options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2,
+                                                     "disk-cache-size": 4096})
 
     driver = webdriver.Chrome(driver_path, options=chrome_options)
     driver.get("https://free-proxy-list.net/")
