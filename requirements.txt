@@ -3,3 +3,4 @@ Flask_CORS
 pandas
 bs4
 selenium
+pyvirtualdisplay

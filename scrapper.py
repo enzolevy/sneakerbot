@@ -7,9 +7,11 @@ from itertools import cycle
 from proxies import get_proxy_list
 import fake_useragent
 import time
+from pyvirtualdisplay import Display
 
 def get_bs_obj(driver_path, url, ip, port):
-
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')

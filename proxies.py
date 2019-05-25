@@ -4,9 +4,11 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 import fake_useragent
-
+from pyvirtualdisplay import Display 
 
 def get_proxy_list(driver_path):
+    display = Display(visible=0, size=(1024, 768))
+    display.start()
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
