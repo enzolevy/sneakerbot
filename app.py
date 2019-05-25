@@ -10,8 +10,7 @@ infos = {
     'mail' : 'chaoulammar1@gmail.com',
     'mdp' : 'Sneakersbot2019',
     'paypal_email' : 'avnerammar1@gmail.com',
-    'paypal_mdp': 'lalala'
-    #'paypal_mdp' : 'Avammar28!'
+    'paypal_mdp' : 'Avammar28!'
 }
 driver_path = './chromedriver'
 scrap_url = 'https://www.sizeofficial.fr/femme/accessoires/'
